@@ -26,12 +26,12 @@ public class InsertLine {
 		while(move_distance < 10) {
 			do {
 				Point end = dir.moveByDist(start, 1);
-				System.out.println("dir slope is: " +  dir.slope + " and move from " + dir.a.toString() + " to " +
-				dir.b.toString() + " intercept is " + dir.intercept);
-				System.out.println("check line between " + start.toString() + " and " + end.toString());
+				//System.out.println("dir slope is: " +  dir.slope + " and move from " + dir.a.toString() + " to " +
+				//dir.b.toString() + " intercept is " + dir.intercept);
+				//System.out.println("check line between " + start.toString() + " and " + end.toString());
 				if(checkFourSurroundingCircles(start, end, intersect, circle)) {
-					System.out.println("intersect with circle " + circle.toString() +  " at " + intersect.toString() + 
-							" with distance to circle: " + intersect.distanceTo(circle));
+					//System.out.println("intersect with circle " + circle.toString() +  " at " + intersect.toString() + 
+					//		" with distance to circle: " + intersect.distanceTo(circle));
 					find_intersect = true;
 					break;
 				}
@@ -47,21 +47,21 @@ public class InsertLine {
 				
 				//also increase the distance
 				move_distance += start.distanceTo(intersect);
-				System.out.println("move point from " + start.toString() + " to " + intersect.toString());
+				//System.out.println("move point from " + start.toString() + " to " + intersect.toString());
 				RestrictedLine rl = new RestrictedLine(start, intersect);
 				lines.add(rl);
-				System.out.println("distance is now: " + move_distance);
+				//System.out.println("distance is now: " + move_distance);
 				if(move_distance > 10) {
 					break;
 				}
 				Line circleC_to_inter = new Line(circle, intersect);
-				System.out.println("slope of circle_intersect is: " + circleC_to_inter.slope);
+				//System.out.println("slope of circle_intersect is: " + circleC_to_inter.slope);
 				Point middle = new Point();
 				double dist_s_to_mid = circleC_to_inter.distanceToP(start, middle);
-				System.out.println("middle: " + middle.toString());
+				//System.out.println("middle: " + middle.toString());
 				Line ctoi_vert = new Line(start, middle);
 				Point symmetry = ctoi_vert.moveByDist(start, 2*dist_s_to_mid);
-				System.out.println("symmetry: " + symmetry.toString());
+				//System.out.println("symmetry: " + symmetry.toString());
 				Line new_dir = new Line(intersect, symmetry);
 				dir = new_dir;
 				start.copyValFrom(intersect);

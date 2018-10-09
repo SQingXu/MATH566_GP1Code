@@ -16,6 +16,7 @@ public class TestMain extends JFrame{
 		il = new InsertLine(start, dir);
 		end = il.intersectCircle();
 		System.out.println("end point x: " + end.x + " y: " + end.y );
+		System.out.println("distance from original point: " + end.distanceTo(new Point(0,0)));
 		
 		this.setTitle("frame");
 		this.setSize(960, 960);
