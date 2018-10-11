@@ -10,18 +10,40 @@ public class TestMain extends JFrame{
 	public Point start;
 	public Point end;
 	public TestMain() {
+		//first start point
 		start = new Point(0.5, 0.1);
 		Point next = new Point(0.6, 0.1);
+		
+		//second start point
+		Point start1 = new Point(0.5, 0.1+ 1e-3);
+		Point next1 = new Point(0.6, 0.1 + 1e-3);
+
 		Line dir = new Line(start, next);
 		il = new InsertLine(start, dir);
 		end = il.intersectCircle();
 		System.out.println("end point x: " + end.x + " y: " + end.y );
 		System.out.println("distance from original point: " + end.distanceTo(new Point(0,0)));
 		
+		Line dir1 = new Line(start1, next1);
+		InsertLine il1 = new InsertLine(start1, dir1);
+		Point end1 = il1.intersectCircle();
+		double conditionNum = this.ConditionNumber(start, start1, end, end1);
+		System.out.println("2 end point x: " + end1.x + " y: " + end1.y );
+		System.out.println("condition number is " + conditionNum);
+		
 		this.setTitle("frame");
 		this.setSize(960, 960);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public double ConditionNumber(Point x_o, Point x_c, Point y_o, Point y_c) {
+		Point dy = y_o.minus(y_c);
+		Point dx = x_o.minus(x_c);
+		return (norm(dy)/norm(y_o))/(norm(dx)/norm(x_o));
+	}
+	private double norm(Point p) {
+		return Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2));
 	}
 	
 	public void paint(Graphics g) {

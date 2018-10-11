@@ -36,4 +36,8 @@ public class Point {
 		return false;
 	}
 	
+	public Point minus(Point p) {
+		return new Point(this.x - p.x, this.y - p.y);
+	}
+	
 }
